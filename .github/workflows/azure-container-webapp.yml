@@ -24,7 +24,7 @@
 # For more information on the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # For more samples to get started with GitHub Action workflows to deploy to Azure: https://github.com/Azure/actions-workflow-samples
 
-name: Build and deploy a container to an Azure Web App
+name: Build and deploy a container to an Azure Container Registry
 
 env:
   AZURE_WEBAPP_NAME: docker-laravel-demo # set this to the name of your Azure Web App
@@ -44,6 +44,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Login to Azure Container Registry
+        run: az acr login --name dockerlaravelregistry
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@f95db51fddba0c2d1ec667646a06c2ce06100226 # v3.0.0
 
@@ -61,7 +64,7 @@ jobs:
         uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
         with:
           push: true
-          tags: ghcr.io/${{ env.REPO }}:${{ github.sha }}
+          tags: dockerlaravelregistry.azurecr.io/laravelapidemo:${{ github.sha }}
           file: ./Dockerfile
 
   deploy:
@@ -83,4 +86,4 @@ jobs:
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          images: "ghcr.io/${{ env.REPO }}:${{ github.sha }}"
+          images: "dockerlaravelregistry.azurecr.io/laravelapidemo:${{ github.sha }}"
