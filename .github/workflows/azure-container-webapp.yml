@@ -20,6 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          mv .env.example .env
           composer install -n --prefer-dist
           php artisan key:generate
           php vendor/bin/phpunit
