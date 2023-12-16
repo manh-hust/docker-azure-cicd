@@ -45,6 +45,13 @@ jobs:
             php artisan key:generate
             php artisan config:clear
             php artisan config:cache
+
+      - run:
+          name: "Check các file trong thư mục gốc lần 2"
+          command: |
+            ls -la
+            pwd
+
       - run:
           name: "Run tests"
           command: php vendor/bin/phpunit
