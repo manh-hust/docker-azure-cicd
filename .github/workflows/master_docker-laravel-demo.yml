@@ -14,14 +14,14 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Copy .env file
-        run: cp .env docker-azure-cicd/
+        run: cp .env /home/runner/work/docker-azure-cicd/docker-azure-cicd/
 
       - name: Generate App Key
         run: php artisan key:generate --show
         id: key
 
       - name: Update .env with App Key
-        run: echo "APP_KEY=${{ steps.key.outputs.result }}" >> docker-azure-cicd/.env
+        run: echo "APP_KEY=${{ steps.key.outputs.result }}" >> /home/runner/work/docker-azure-cicd/docker-azure-cicd/.env
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
