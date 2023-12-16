@@ -21,7 +21,10 @@ RUN composer install
 
 RUN cp .env.example .env && php artisan key:generate
 
+COPY sshd_config /etc/ssh/
+
 COPY entrypoint.sh ./
+
 # Start and enable SSH
 RUN apt-get update \
     && apt-get install -y --no-install-recommends dialog \
@@ -31,4 +34,6 @@ RUN apt-get update \
 
 CMD php artisan serve --host=0.0.0.0 --port=8000
 
-EXPOSE 8000
+EXPOSE 8000 2222
+
+ENTRYPOINT [ "./entrypoint.sh" ]
