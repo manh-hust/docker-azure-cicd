@@ -21,6 +21,7 @@ RUN composer install
 
 RUN cp .env.example .env && php artisan key:generate
 
+COPY entrypoint.sh ./
 # Start and enable SSH
 RUN apt-get update \
     && apt-get install -y --no-install-recommends dialog \
