@@ -52,11 +52,7 @@ jobs:
       - setup_remote_docker:
           version: 20.10.14
           docker_layer_caching: true
-      - run:
-          name: "Create .env file and generate app key"
-          command: |
-            cp .env.example .env
-            php artisan key:generate
+
       - run:
           name: "Build and push Docker image"
           command: |
