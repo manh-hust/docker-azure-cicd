@@ -21,6 +21,13 @@ RUN composer install
 
 RUN cp .env.example .env && php artisan key:generate
 
+# Start and enable SSH
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends dialog \
+    && apt-get install -y --no-install-recommends openssh-server \
+    && echo "root:Docker!" | chpasswd \
+    && chmod u+x /app/entrypoint.sh
+
 CMD php artisan serve --host=0.0.0.0 --port=8000
 
 EXPOSE 8000
