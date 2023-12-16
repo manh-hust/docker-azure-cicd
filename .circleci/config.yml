@@ -35,8 +35,9 @@ jobs:
       - run:
           name: "Create .env file and generate app key"
           command: |
-            mv .env.example .env
+            cp .env.example .env
             php artisan key:generate
+            php artisan config:cache
 
       - run:
           name: "Run tests"
