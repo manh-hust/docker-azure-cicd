@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-
     return response(ExchangeRateHelper::getAllRates());
+});
+
+Route::get('/check', function () {
+    return "Hello World!";
 });
