@@ -6,7 +6,7 @@ use InvalidArgumentException;
 
 class ExchangeRateHelper
 {
-    const CURRENCIES = ["EUR", "GBP", "NGN", "USD"];
+    const CURRENCIES = ["EUR", "GBP", "NGN", "USD", "VND"];
 
     public static function getRatesForCurrency(string $currency): array
     {
