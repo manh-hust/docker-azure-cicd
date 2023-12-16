@@ -55,9 +55,9 @@ jobs:
       - run:
           name: "Build and push Docker image"
           command: |
-            docker build -t laravelapidemo.azurecr.io/laravelapidemo:latest .
-            docker login -u $DOCKER_USER -p $DOCKER_PASS laravelapidemo.azurecr.io
-            docker push laravelapidemo.azurecr.io/laravelapidemo:latest
+            docker build -t dockerlaravelregistry.azurecr.io/laravelapidemo:latest .
+            docker login -u $DOCKER_USER -p $DOCKER_PASS dockerlaravelregistry.azurecr.io
+            docker push dockerlaravelregistry.azurecr.io/laravelapidemo:latest
 
 workflows:
   test-and-deploy:
