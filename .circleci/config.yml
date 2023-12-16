@@ -66,12 +66,12 @@ jobs:
       - setup_remote_docker:
           version: 20.10.14
           docker_layer_caching: true
-      # - run:
-      #     name: "Build and push Docker image"
-      #     command: |
-      #       docker build -t dockerlaravelregistry.azurecr.io/laravelapidemo:latest .
-      #       docker login -u $DOCKER_USER -p $DOCKER_PASS dockerlaravelregistry.azurecr.io
-      #       docker push dockerlaravelregistry.azurecr.io/laravelapidemo:latest
+      - run:
+          name: "Build and push Docker image"
+          command: |
+            docker build -t dockerlaravelregistry.azurecr.io/laravelapidemo:latest .
+            docker login -u $DOCKER_USER -p $DOCKER_PASS dockerlaravelregistry.azurecr.io
+            docker push dockerlaravelregistry.azurecr.io/laravelapidemo:latest
 
 workflows:
   test-and-deploy:
