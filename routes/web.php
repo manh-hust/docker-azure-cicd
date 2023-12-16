@@ -1,6 +1,7 @@
 <?php
 
 use App\Helpers\ExchangeRateHelper;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,4 +21,12 @@ Route::get('/', function () {
 
 Route::get('/check', function () {
     return "Hello World!";
+});
+
+Route::get('/users', function () {
+    $data = [
+        'status' => 'success',
+        'data' => User::all()
+    ];
+    return response($data);
 });
