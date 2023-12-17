@@ -31,14 +31,14 @@ EXPOSE 22
 # Install SSH server
 RUN apt-get install -y openssh-server
 
-# Create SSH directory
-RUN mkdir /var/run/sshd
+RUN echo "root:Docker!" | chpasswd
+RUN ssh-keygen -A
 
-# Set up a simple password for the root user (change this for production)
-RUN echo 'root:password' | chpasswd
+COPY ./sshd_config /etc/ssh/.
+EXPOSE 2222 80
 
-# Allow root login via SSH (change this for production)
-RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+COPY ./start.sh start.sh
+RUN chmod +x ./start.sh
 
 # Start SSH server
-CMD service ssh start && php artisan serve --host=0.0.0.0 --port=8000
+CMD ./start.sh && php artisan serve --host=0.0.0.0 --port=8000
