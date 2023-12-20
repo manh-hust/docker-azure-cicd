@@ -24,7 +24,7 @@ Route::get('/check', function () {
 });
 
 Route::get('/check2', function () {
-    return  env('HELLO');
+    return  env('app.HELLO', 'NO');
 });
 
 Route::get('/users', function () {
