@@ -19,7 +19,7 @@ WORKDIR /app
 
 RUN composer install
 
-# RUN cp .env.example .env && php artisan key:generate
+RUN cp .env.example .env && php artisan key:generate
 
 CMD php artisan serve --host=0.0.0.0 --port=8000
 
