@@ -20,7 +20,11 @@ Route::get('/', function () {
 });
 
 Route::get('/check', function () {
-    return "Hello World!";
+    return "OK!";
+});
+
+Route::get('/check2', function () {
+    return  env('HELLO');
 });
 
 Route::get('/users', function () {
